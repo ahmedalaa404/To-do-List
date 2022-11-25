@@ -29,3 +29,14 @@ input::placeholder
 {
     text-decoration: line-through;
 }
+
+.newTaskEdite
+{
+ background-color: rgb(54, 48, 48);   
+}
+.newTaskEdite input,.newTaskEdite button
+{
+    padding: 10px;
+    border-radius: 12px;
+    font-weight: 700;
+}

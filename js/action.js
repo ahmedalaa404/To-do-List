@@ -1,6 +1,9 @@
-const input=document.querySelector('input');
+const input=document.querySelector('.taskInput');
 const submit =document.querySelector('.submit')
 const taskDive=document.querySelector('.tasks')
+const edites=document.querySelector('.newTaskEdite');
+const taskEdites=document.querySelector('.newTaskEdite input');
+const changDate=document.querySelector('.newTaskEdite button');
 let arrayOfTask=[];
 
 
@@ -69,19 +72,16 @@ function displayTasks(tasks)
         </div>
         <div class="edites">
             <button class="btn btn-danger" onclick='tasksDone(${i})' ${btnAttr}>delete</button>
-            <button class="btn btn-primary" ${btnAttr}>edite</button>
+            <button class="btn btn-primary" ${btnAttr} onclick="editeTask(${i})">edite</button>
         </div>
     </div>`
     }
     taskDive.innerHTML=concat;
     
 }
-
-input.addEventListener('click',function(e){console.log(e)})
-
 function tasksDone(x)
 {
-arrayOfTask[x].complete=true;
+    arrayOfTask.splice(x,1)
 localStorage.setItem('tasks',JSON.stringify(arrayOfTask));
 displayTasks(arrayOfTask)
 }
@@ -91,7 +91,36 @@ function details(x)
     if(arrayOfTask[x].complete==true)
     {
         arrayOfTask[x].complete=false;
-        displayTasks(arrayOfTask);
-    }
 
+    }
+    else
+    {
+        arrayOfTask[x].complete=true;
+    }
+    localStorage.setItem('tasks',JSON.stringify(arrayOfTask));
+    displayTasks(arrayOfTask);
 }
+
+
+function editeTask(x)
+{
+    taskEdites.value=arrayOfTask[x].title;
+    edites.classList.replace('d-none','d-block');
+    changDate.addEventListener('click',function()
+    {
+        compareData(x);
+    })
+}
+
+function compareData(x)
+{
+    if(arrayOfTask[x].title!=taskEdites.value)
+    {
+        arrayOfTask[x].title=taskEdites.value;
+        arrayOfTask[x].id=Date.now()
+    }
+    edites.classList.replace('d-block','d-none');
+    localStorage.setItem('tasks',JSON.stringify(arrayOfTask));
+    displayTasks(arrayOfTask);
+}
+
