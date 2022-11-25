@@ -1,0 +1,31 @@
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input:focus-visible
+{
+    outline: none;
+    box-shadow: 1px 2px 1px rgb(66, 116, 202);
+}
+input::placeholder
+{
+    text-align: center;
+}
+.task
+{
+    background: rgba(167, 156, 156, 0.162);
+    border-radius: 15px;
+}
+
+.done 
+{
+    background: rgba(96, 85, 85, 0.19);
+}
+.done p
+{
+    text-decoration: line-through;
+}
